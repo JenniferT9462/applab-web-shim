@@ -63,3 +63,25 @@ function showElement(id) {
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// Parses an element's text/value as a number, like App Lab's getNumber().
+// Returns NaN if it isn't a valid number — check with isNaN() before using it,
+// same as you would in App Lab.
+function getNumber(id) {
+  return parseFloat(getText(id));
+}
+
+// Mimics App Lab's multi-screen navigation: hides every element marked as a
+// screen, then shows only the one requested. Give each of your screen
+// containers class="app-screen" in the HTML for this to find them, e.g.:
+//   <div id="startScreen" class="app-screen">...</div>
+//   <div id="gameScreen" class="app-screen">...</div>
+function setScreen(id) {
+  var screens = document.querySelectorAll(".app-screen");
+  for (var i = 0; i < screens.length; i++) {
+    screens[i].style.display = "none";
+  }
+  var target = document.getElementById(id);
+  if (!target) { console.error("setScreen: no element with id '" + id + "'"); return; }
+  target.style.display = "";
+}
